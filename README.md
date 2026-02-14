@@ -1,7 +1,3 @@
-Here is your content properly formatted in **clean GitHub-ready Markdown**. You can copy and paste this directly into your `README.md`.
-
----
-
 # 🛡 Windows Detection Lab using Splunk (Home SOC Project)
 
 ## 📌 Project Overview
@@ -209,4 +205,9 @@ A custom Splunk dashboard was created titled:
 * PowerShell Executions (4688)
 * Account Creations (4720)
 * Privileged Logons (4672)
+
+index=* sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1
+| search Image="*powershell.exe"
+| table _time Computer User ParentImage CommandLine
+
 
