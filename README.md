@@ -213,33 +213,6 @@ index=* sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=
 
 ## 🔍 PowerShell Process Creation & Parent-Child Detection
 
----
-
-# 📝 What To Add To Your README
-
-Here’s a clean structure you can paste and adjust:
-
----
-
-## 🎯 Objective
-
-Detect PowerShell activity and identify child processes spawned by PowerShell using Sysmon logs in Splunk.
-
----
-
-## 🛠 Lab Setup
-
-* Windows 10 Endpoint
-* Sysmon installed with config
-* Splunk receiving logs
-* Sourcetype:
-
-  ```
-  WinEventLog:Microsoft-Windows-Sysmon/Operational
-  ```
-
----
-
 ## 📌 Detection 1: PowerShell Execution
 
 ```
