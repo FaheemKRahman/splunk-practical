@@ -47,6 +47,7 @@ The objective was to simulate real-world attacker techniques, ingest endpoint te
 ```spl
 index=*
 ```
+<img width="1905" height="953" alt="first index result" src="https://github.com/user-attachments/assets/4aeb9b03-51a9-4bee-a37b-4e6fbdba9abf" />
 
 ---
 
@@ -94,6 +95,9 @@ The following detections were developed and tested.
 EventCode=4625
 ```
 
+<img width="1617" height="513" alt="LoginFailList" src="https://github.com/user-attachments/assets/1d32016e-e9a5-4596-8a22-b2b9f09fc11d" />
+
+
 ### Purpose
 
 Detects failed authentication attempts that may indicate:
@@ -137,6 +141,9 @@ Detects creation of new local accounts that may indicate persistence mechanisms.
 EventCode=4672
 ```
 
+<img width="1899" height="944" alt="Authentication Logs" src="https://github.com/user-attachments/assets/53355cc2-9ae4-4a0b-953d-cc7ee51e716a" />
+
+
 ### Purpose
 
 Detects logons using accounts with elevated privileges.
@@ -162,6 +169,8 @@ sourcetype=WinEventLog:Security EventCode=4688
 | table _time ComputerName Account_Name New_Process_Name CommandLine
 | sort -_time
 ```
+
+<img width="985" height="468" alt="4688 works" src="https://github.com/user-attachments/assets/776e6d70-7e51-4096-802d-3a62a6b87e4c" />
 
 ### Test Commands
 
@@ -220,6 +229,8 @@ index=* sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=
 | search Image="*powershell.exe"
 | table _time Computer User ParentImage CommandLine
 ```
+<img width="1602" height="507" alt="sysmon logs on spulnk" src="https://github.com/user-attachments/assets/a98dc4cb-fb24-4aac-abb3-e7a4f42aec91" />
+
 
 **Purpose:** Detect when PowerShell is executed.
 
@@ -236,6 +247,9 @@ index=* sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=
 | search ParentImage="*powershell.exe"
 | table _time Computer User ParentImage Image CommandLine
 ```
+
+<img width="1867" height="135" alt="processesdetected by powershelel" src="https://github.com/user-attachments/assets/03ad5276-dfc9-464e-a057-27c9d2aec35e" />
+
 
 **Purpose:** Detect commands launched from PowerShell such as:
 
