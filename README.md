@@ -1,6 +1,6 @@
 # 🛡 Windows Detection Lab using Splunk (Home SOC Project)
 
-## 📌 Project Overview
+## Project Overview
 
 This project demonstrates the design and implementation of a **home SOC-style detection lab** using:
 
@@ -13,7 +13,7 @@ The objective was to simulate real-world attacker techniques, ingest endpoint te
 
 ---
 
-## 🏗 Lab Architecture
+## Lab Architecture
 
 **Components:**
 
@@ -31,9 +31,9 @@ The objective was to simulate real-world attacker techniques, ingest endpoint te
 
 ---
 
-## ⚙ Configuration & Hardening Steps
+## Configuration & Hardening Steps
 
-### 1️⃣ Splunk Deployment
+### Splunk Deployment
 
 * Installed **Splunk Enterprise** on Windows 11
 * Installed and configured **Splunk Universal Forwarder**
@@ -51,9 +51,9 @@ index=*
 
 ---
 
-### 2️⃣ Enabled Advanced Audit Policies
+### Enabled Advanced Audit Policies
 
-#### ✅ Enabled Process Creation Logging
+#### Enabled Process Creation Logging
 
 ```powershell
 auditpol /set /subcategory:"Process Creation" /success:enable /failure:enable
@@ -67,7 +67,7 @@ auditpol /get /subcategory:"Process Creation"
 
 ---
 
-#### ✅ Enabled Command-Line Logging (Enhanced Visibility)
+#### Enabled Command-Line Logging (Enhanced Visibility)
 
 ```powershell
 reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\Audit" /v ProcessCreationIncludeCmdLine_Enabled /t REG_DWORD /d 1 /f
@@ -78,13 +78,13 @@ System reboot performed to apply changes.
 
 ---
 
-# 🔍 Detection Engineering
+# Detection Engineering
 
 The following detections were developed and tested.
 
 ---
 
-## 🔐 1. Failed Logon Detection
+## 1. Failed Logon Detection
 
 * **Event ID:** 4625
 * **MITRE ATT&CK:** T1110 – Brute Force
@@ -107,7 +107,7 @@ Detects failed authentication attempts that may indicate:
 
 ---
 
-## 👤 2. Account Creation Detection
+## 2. Account Creation Detection
 
 * **Event ID:** 4720
 * **MITRE ATT&CK:** T1136 – Create Account
@@ -130,7 +130,7 @@ Detects creation of new local accounts that may indicate persistence mechanisms.
 
 ---
 
-## 🔑 3. Privileged Logon Detection
+##  3. Privileged Logon Detection
 
 * **Event ID:** 4672
 * **MITRE ATT&CK:** T1078 – Valid Accounts
@@ -150,7 +150,7 @@ Detects logons using accounts with elevated privileges.
 
 ---
 
-## 🖥 4. PowerShell Execution Detection
+##  4. PowerShell Execution Detection
 
 * **Event ID:** 4688
 * **MITRE ATT&CK:** T1059.001 – PowerShell
@@ -190,7 +190,7 @@ Detects PowerShell execution commonly used in:
 
 ---
 
-# 🚨 Alerting
+#  Alerting
 
 Each detection was converted into a **scheduled Splunk alert** with:
 
@@ -202,7 +202,7 @@ This simulates SOC-style automated monitoring.
 
 ---
 
-# 📊 Monitoring Dashboard
+#  Monitoring Dashboard
 
 A custom Splunk dashboard was created titled:
 
@@ -220,9 +220,9 @@ index=* sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=
 | table _time Computer User ParentImage CommandLine
 
 
-## 🔍 PowerShell Process Creation & Parent-Child Detection
+##  PowerShell Process Creation & Parent-Child Detection
 
-## 📌 Detection 1: PowerShell Execution
+##  Detection 1: PowerShell Execution
 
 ```
 index=* sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1
@@ -240,7 +240,7 @@ MITRE Mapping:
 
 ---
 
-## 📌 Detection 2: PowerShell Spawning Child Processes
+##  Detection 2: PowerShell Spawning Child Processes
 
 ```
 index=* sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1
