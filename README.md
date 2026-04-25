@@ -1,4 +1,4 @@
-# 🛡 Windows Detection Lab using Splunk (Home SOC Project)
+# Windows Detection Lab using Splunk (Home SOC Project)
 
 ## Project Overview
 
